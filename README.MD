@@ -44,23 +44,3 @@ The project currently implements a **scalar reverse-mode automatic differentiati
 
 All gradients are computed automatically via the graph structure — no symbolic differentiation, no external libraries.
 
----
-
-## Example (Current)
-
-```python
-w = Value(0.0)
-x = Value(2.0)
-y_true = Value(8.0)
-
-for step in range(50):
-    y_pred = w * x
-    loss = (y_pred - y_true) ** 2
-
-    loss.backward()
-    w.data -= 0.1 * w.grad
-    w.grad = 0
-
-    print(step, loss.data, w.data)
-```
-This loop trains w toward the correct value using only the custom autodiff engine.
