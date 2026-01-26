@@ -27,7 +27,7 @@ This mirrors how early ML frameworks and research systems were developed.
 
 ---
 
-## Current State (v0.3)
+## Current State (v0.4)
 
 The project currently implements a **scalar reverse-mode automatic differentiation engine**, including:
 
@@ -40,6 +40,7 @@ The project currently implements a **scalar reverse-mode automatic differentiati
 - Mean Squared Error (MSE) loss
 - Gradient descent training loop
 - Successful training of a linear regression model from scratch
+- Training of a single nonlinear neuron using tanh activation
 
 All gradients are computed automatically via the graph structure — no symbolic differentiation, no external libraries.
 
