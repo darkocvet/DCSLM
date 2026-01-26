@@ -1,3 +1,17 @@
+import math
+
+   
+def _tanh(a):
+    t = math.tanh(a.data)
+    out = Value(t)
+    out._prev = (a, )
+
+    def _backward():
+        a.grad += (1 - t**2) * out.grad
+    
+    out._backward = _backward
+    return out
+
 class Value:
     def __init__(self, data, _prev=()):
         self.data = data
@@ -89,6 +103,7 @@ class Value:
         for node in reversed(topo):
             node._backward()
     
+    @staticmethod
     def mse(y_pred, y_true):
         diff = y_pred - y_true
         return diff**2
@@ -111,20 +126,7 @@ class Value:
     def __truediv__(self, other):
         return Value.division(self, other)
     
-
-w = Value(0.0)
-x = Value(16.0)
-y_true = Value(4.0)
-lr = 0.01
-for step in range(60):
-    y_pred = x / w
-    loss = (y_pred - y_true) ** 2
-
-    loss.backward()
-
-    w.data -= lr * w.grad
-    w.grad = 0
-
-    print(step, loss.data, round(w.data, ndigits=3))
-
+    def tanh(self):
+        return _tanh(self)
+    
     
