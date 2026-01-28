@@ -1,5 +1,7 @@
 import math
 
+def _ensure_value(x):
+    return x if isinstance(x, Value) else Value(x)
    
 def _tanh(a):
     t = math.tanh(a.data)
@@ -18,6 +20,8 @@ class Value:
         self.grad = 0
         self._prev = _prev
         self._backward = lambda: None
+
+        
 
     def add(a,b):
         out = Value(a.data + b.data)
@@ -73,7 +77,8 @@ class Value:
         return out 
 
     def division(a,b, eps=1e-8):
-        out = Value(a.data/(b.data+eps))
+        eps = Value(eps)
+        out = a/(b+eps)
         out._prev = (a,b)
 
         def _backward():
@@ -109,12 +114,15 @@ class Value:
         return diff**2
 
     def __add__(self, other):
+        other = _ensure_value(other)
         return Value.add(self, other)
     
     def __mul__(self, other):
+        other = _ensure_value(other)
         return Value.multiply(self,other)
     
     def __sub__(self, other):
+        other = _ensure_value(other)
         return Value.subtract(self,other)
     
     def __neg__(self):
@@ -124,9 +132,8 @@ class Value:
         return Value.power(self,n)
     
     def __truediv__(self, other):
+        other = _ensure_value(other)
         return Value.division(self, other)
     
     def tanh(self):
         return _tanh(self)
-    
-    

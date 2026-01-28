@@ -27,20 +27,40 @@ This mirrors how early ML frameworks and research systems were developed.
 
 ---
 
-## Current State (v0.4)
+## Current State (v0.5)
 
-The project currently implements a **scalar reverse-mode automatic differentiation engine**, including:
+The project currently implements a **scalar reverse-mode automatic differentiation engine** and the first neural network primitives, including:
 
+### Autodiff Core
 - Dynamic computational graphs
 - Reverse-mode backpropagation
 - Topological graph traversal
 - Gradient accumulation
 - Operator overloading for clean mathematical syntax
 - Numerically stable division (epsilon handling)
+
+### Learning Components
 - Mean Squared Error (MSE) loss
 - Gradient descent training loop
 - Successful training of a linear regression model from scratch
-- Training of a single nonlinear neuron using tanh activation
+
+### Neural Network Primitives
+- A fully differentiable `Neuron` abstraction
+- Trainable weights and bias represented as autodiff nodes
+- Weighted sum + optional `tanh` nonlinearity
+- Forward passes that dynamically construct computation graphs
+- Automatic gradient propagation through neuron parameters
 
 All gradients are computed automatically via the graph structure — no symbolic differentiation, no external libraries.
 
+---
+
+## Planned Next Steps
+
+- Multi-neuron layers
+- Multi-layer perceptron (MLP)
+- Nonlinear function approximation (e.g. XOR)
+- Extension toward vectorized operations
+- Sequence modeling foundations
+
+Each step will be implemented manually and validated before moving upward in abstraction.
