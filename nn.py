@@ -22,6 +22,33 @@ class Neuron:
     def parameters(self):
         return self.w + [self.b]
 
+class Layer:
+    def __init__(self, nin, nout):
+        self.nin = nin
+        self.nn = nout
+        self.neurons = [Neuron(nin) for _ in range (nout)]
+    
+    def __call__(self, x):
+        activations = []
+        for neuron in self.neurons:
+            activations.append(neuron(x))
+        
+        return activations[0] if len(activations) == 1 else activations
+    
+    def parameters(self):
+        return [p for neuron in self.neurons for p in neuron.parameters()]
+    
+
+
+
+
+        
+
+
+    
+
+    
+
 
 
         

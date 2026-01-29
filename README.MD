@@ -50,14 +50,17 @@ The project currently implements a **scalar reverse-mode automatic differentiati
 - Weighted sum + optional `tanh` nonlinearity
 - Forward passes that dynamically construct computation graphs
 - Automatic gradient propagation through neuron parameters
+- Multi-neuron layers
+
+Fully connected Layer abstraction where there is support for dimensionality transformation (N inputs, M outputs), activations are created. And the layer abstraction returns a flattened list of parameters provided by each neuron within the layer. 
+
+Output squeezing is also implemented where the final output is returned as a pure value instead of a list. 
 
 All gradients are computed automatically via the graph structure — no symbolic differentiation, no external libraries.
 
 ---
 
 ## Planned Next Steps
-
-- Multi-neuron layers
 - Multi-layer perceptron (MLP)
 - Nonlinear function approximation (e.g. XOR)
 - Extension toward vectorized operations
