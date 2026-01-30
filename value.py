@@ -137,3 +137,6 @@ class Value:
     
     def tanh(self):
         return _tanh(self)
+    
+    def __str__(self):
+        return f"Value(data={self.data}, grad={self.grad})"

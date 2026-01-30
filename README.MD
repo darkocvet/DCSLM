@@ -27,7 +27,7 @@ This mirrors how early ML frameworks and research systems were developed.
 
 ---
 
-## Current State (v0.5)
+## Current State (v0.6)
 
 The project currently implements a **scalar reverse-mode automatic differentiation engine** and the first neural network primitives, including:
 
@@ -51,6 +51,7 @@ The project currently implements a **scalar reverse-mode automatic differentiati
 - Forward passes that dynamically construct computation graphs
 - Automatic gradient propagation through neuron parameters
 - Multi-neuron layers
+- MLP abstraction
 
 Fully connected Layer abstraction where there is support for dimensionality transformation (N inputs, M outputs), activations are created. And the layer abstraction returns a flattened list of parameters provided by each neuron within the layer. 
 
@@ -61,7 +62,6 @@ All gradients are computed automatically via the graph structure — no symbolic
 ---
 
 ## Planned Next Steps
-- Multi-layer perceptron (MLP)
 - Nonlinear function approximation (e.g. XOR)
 - Extension toward vectorized operations
 - Sequence modeling foundations
