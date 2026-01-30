@@ -27,7 +27,7 @@ This mirrors how early ML frameworks and research systems were developed.
 
 ---
 
-## Current State (v0.6)
+## Current State (v0.7)
 
 The project currently implements a **scalar reverse-mode automatic differentiation engine** and the first neural network primitives, including:
 
