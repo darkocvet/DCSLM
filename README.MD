@@ -27,7 +27,7 @@ This mirrors how early ML frameworks and research systems were developed.
 
 ---
 
-## Current State (v0.7)
+## Current State (v0.8)
 
 The project currently implements a **scalar reverse-mode automatic differentiation engine** and the first neural network primitives, including:
 
@@ -58,6 +58,14 @@ Fully connected Layer abstraction where there is support for dimensionality tran
 Output squeezing is also implemented where the final output is returned as a pure value instead of a list. 
 
 All gradients are computed automatically via the graph structure — no symbolic differentiation, no external libraries.
+
+
+## Data & Tokenization
+
+- Character-Level Tokenizer: A custom encoder/decoder class that maps the "alphabet" of a dataset into a learnable format.
+- Vocabulary Mapping (stoi / itos): Bi-directional lookup tables (string-to-integer and integer-to-string) generated dynamically from training data.
+- Dataset Integration: Successfully integrated a 4.8MB subset of the TinyStories dataset, allowing for character-based sequence modeling.
+
 
 ---
 
