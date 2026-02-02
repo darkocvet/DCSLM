@@ -60,7 +60,7 @@ Output squeezing is also implemented where the final output is returned as a pur
 All gradients are computed automatically via the graph structure — no symbolic differentiation, no external libraries.
 
 
-## Data & Tokenization
+### Data & Tokenization
 
 - Character-Level Tokenizer: A custom encoder/decoder class that maps the "alphabet" of a dataset into a learnable format.
 - Vocabulary Mapping (stoi / itos): Bi-directional lookup tables (string-to-integer and integer-to-string) generated dynamically from training data.
