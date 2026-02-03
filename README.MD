@@ -27,9 +27,9 @@ This mirrors how early ML frameworks and research systems were developed.
 
 ---
 
-## Current State (v0.8)
+## Current State (v0.9)
 
-The project currently implements a **scalar reverse-mode automatic differentiation engine** and the first neural network primitives, including:
+The project has moved beyond basic MLPs and is now implementing the architectural guts of a Small Language Model. All operations are grounded in a custom scalar reverse-mode automatic differentiation engine.
 
 ### Autodiff Core
 - Dynamic computational graphs
@@ -66,12 +66,9 @@ All gradients are computed automatically via the graph structure — no symbolic
 - Vocabulary Mapping (stoi / itos): Bi-directional lookup tables (string-to-integer and integer-to-string) generated dynamically from training data.
 - Dataset Integration: Successfully integrated a 4.8MB subset of the TinyStories dataset, allowing for character-based sequence modeling.
 
+### Sequence Modeling Foundations
 
----
+- Token Embedding Table: A trainable lookup matrix where character identities are mapped to high-dimensional coordinates (D-dimensions). This allows the model to learn semantic similarity between characters.
+- Positional Embedding Table: A learnable "address" system that assigns unique vectors to every index in the sequence (up to max_len), solving the permutation-invariance problem.
+- Vector Fusion: Implementation of element-wise addition (Char + Pos) to create a unified representation of a character's identity and its location in time.
 
-## Planned Next Steps
-- Nonlinear function approximation (e.g. XOR)
-- Extension toward vectorized operations
-- Sequence modeling foundations
-
-Each step will be implemented manually and validated before moving upward in abstraction.
