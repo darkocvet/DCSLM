@@ -74,6 +74,16 @@ class Value:
             a.grad += n * (a.data ** (n-1)) * out.grad
         
         out._backward = _backward
+        return out
+
+    def exp(self):
+        x = self.data
+        out = Value(math.exp(x), (self,))
+        
+        def _backward():
+            self.grad += out.data * out.grad
+        out._backward = _backward
+        
         return out 
 
     def division(a,b, eps=1e-8):

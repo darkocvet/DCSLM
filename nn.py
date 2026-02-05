@@ -25,10 +25,10 @@ class Neuron:
         return self.w + [self.b]
 
 class Layer:
-    def __init__(self, nin, nout):
+    def __init__(self, nin, nout, nonlin):
         self.nin = nin
         self.nn = nout
-        self.neurons = [Neuron(nin) for _ in range (nout)]
+        self.neurons = [Neuron(nin, nonlin=nonlin) for _ in range (nout)]
     
     def __call__(self, x):
         activations = []
@@ -44,7 +44,7 @@ class Layer:
 class MLP:
     def __init__(self, nin, nouts):
         sz = [nin] + nouts
-        self.layers = [Layer(sz[i], sz[i+1]) for i in range(len(nouts))]
+        self.layers = [Layer(sz[i], sz[i+1], nonlin=True) for i in range(len(nouts))]
     
     def __call__(self, x):
 

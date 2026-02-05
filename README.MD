@@ -27,7 +27,7 @@ This mirrors how early ML frameworks and research systems were developed.
 
 ---
 
-## Current State (v0.9)
+## Current State (v0.1.0)
 
 The project has moved beyond basic MLPs and is now implementing the architectural guts of a Small Language Model. All operations are grounded in a custom scalar reverse-mode automatic differentiation engine.
 
@@ -72,3 +72,8 @@ All gradients are computed automatically via the graph structure — no symbolic
 - Positional Embedding Table: A learnable "address" system that assigns unique vectors to every index in the sequence (up to max_len), solving the permutation-invariance problem.
 - Vector Fusion: Implementation of element-wise addition (Char + Pos) to create a unified representation of a character's identity and its location in time.
 
+### Causal Self-Attention
+- Q/K/V Projection: Triple-head linear transformation using the custom Layer abstraction.
+- Scaled Dot-Product Attention: Manual implementation of the attention formula: $Attention(Q, K, V) = \text{softmax}(\frac{QK^T}{\sqrt{d_k}})V$.
+- Causal Masking: A strict "look-ahead" constraint implemented via nested loops, ensuring tokens only attend to the past and present.
+- Micro-Softmax: A scalar-based implementation of the softmax function that preserves gradient flow through the exponentiation and normalization phases.
